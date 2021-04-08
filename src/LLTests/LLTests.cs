@@ -16,15 +16,32 @@ using System.Collections.Generic;
 // Para poder usar sus librerías se necesita tener instalado el programa.
 namespace LLTests
 {
-    public class ModelObject
+    public interface IModelObject
     {
-        public ModelObject()
-        {
-
-        }
-
         public string ModelVariable1 { get; set; }
         public string ModelVariable2 { get; set; }
+    }
+
+    public class ModelObject : IModelObject
+    {
+        public string ModelVariable1 { get; set; }
+        public string ModelVariable2 { get; set; }
+
+    }
+
+
+    public interface IModelObjectExtend : IModelObject
+    {
+        public IModelObject ModelObjectVariable { get; set; }
+    }
+
+    public class ModelObjectExtend : ModelObject, IModelObjectExtend
+    {
+        public ModelObjectExtend()
+        {
+        }
+
+        public IModelObject ModelObjectVariable { get; set; }
     }
 
     public class LLTests
@@ -34,30 +51,24 @@ namespace LLTests
 
         public LLTests()
         {
-            Function1();
+            ObjectDataProviderExample();
         }
 
-        private void Function2()
+        class Car
         {
-            // Licensing the List & Label component
-            // LL.LicensingInfo = "";
+            public string Brand { get; set; }
+            public string Model { get; set; }
+        }
 
-            // Identify the data source
-            XmlDataProvider xmlProvider = new XmlDataProvider(@"C:\temp\customers.xml");
-            LL.DataSource = xmlProvider;
-            // LL.DataMember = "Customers";
-
-            // Define project type
-            LL.AutoProjectType = LlProject.Label;
-
-            // Define some options (optional)
-            // No more options to define
-
+        private void ObjectDataProviderExample()
+        {
+            List<Car> cars = new List<Car>();
+            cars.Add(new Car { Brand = "VW", Model = "Passat"});
+            cars.Add(new Car { Brand = "Porsche", Model = "Cayenne"});
+            LL.DataSource = new ObjectDataProvider(cars);
+            
             // Execute main function: Design
             LL.Design();
-
-            // Post-Processing (optional)
-            // Do nothing currently
 
         }
 
@@ -69,11 +80,13 @@ namespace LLTests
             LL.DataSource = CreateDataSet("JSON");
             // LL.DataMember = "Customers";
 
-            // Define additional data fields
+            /* Define additional data fields */
+            // We add the folders with a point. For instance: AdditionalData.UserName
             LL.Variables.Add("AdditionalData.UserName", "Usuario");
             LL.Variables.Add("AdditionalData.ProjectName ", "Name of project");
 
-            // using a dictionary
+            /* using a dictionary */
+            // Same as before we add the folders with a point
             IDictionary<string, string> modelDictionary = new Dictionary<string, string>
             {
                 { "Model.variable1", "value1" },
@@ -81,13 +94,30 @@ namespace LLTests
             }; 
             LL.Variables.AddFromDictionary((System.Collections.IDictionary)modelDictionary);
 
-            // using a model
-            ModelObject modelObject = new ModelObject()
+            /* using a model */
+            // it is not possible to add folders
+            IModelObject modelObject = new ModelObject()
             {
                 ModelVariable1 = "ModelValue1", 
                 ModelVariable2 = "ModelValue2"
             };
             LL.Variables.AddFromObject(modelObject);
+
+            // using a model extended
+            // We add the folders with a variable of type of an object
+            IModelObjectExtend modelObjectExtended = new ModelObjectExtend()
+            {
+                ModelObjectVariable = modelObject,
+                ModelVariable1 = "ModelExtendedValue1",
+                ModelVariable2 = "ModelExtendedValue2"
+            };
+            LL.Variables.AddFromObject(modelObjectExtended);
+
+            // Note that the value of the created variable "ModelVariable1"
+            // will be override from "ModelValue1" to "ModelExtendedValue1"
+
+            // defining a list can be done with the example of function ObjectDataProviderExample
+
 
 
             // Define project type
