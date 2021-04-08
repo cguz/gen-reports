@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Data>
+  <Companies>
+    <Company>combit GmbH</Company>
+    <Contacts>
+      <Name>Wild</Name>
+      <Firstname>John</Firstname>
+      <MainContact lltype="Boolean">1</MainContact>
+    </Contacts>
+    <Contacts>
+      <Name>Cash</Name>
+      <Firstname>William</Firstname>
+      <MatchCode>Cash</MatchCode>
+      <MainContact lltype="Boolean">0</MainContact>
+    </Contacts>
+  </Companies>
+</Data>

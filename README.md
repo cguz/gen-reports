@@ -1,29 +1,23 @@
-# README #
+# List and Label #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Example in C# to generate a List and Label report.
 
-### What is this repository for? ###
+## Requirements ##
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+* NuGet 4.3.0+
 
-### How do I get set up? ###
+* Visual Studio 2017 version 15.3+
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* Visual Studio 2015 with NuGet VSIX v3.6.0
 
-### Contribution guidelines ###
+* dotnet: dotnetcore.exe (.NET SDK 2.0.0+)
 
-* Writing tests
-* Code review
-* Other guidelines
+## Configuration steps ##
 
-### Who do I talk to? ###
+* Install List and Label from [here](https://www.combit.com/)
+* Get a licence (this is a requirement).
+* Install combit.ListLabel26 package from NuGet packages. They can also be found from [here](https://www.nuget.org/profiles/combit).
 
-* Repo owner or admin
-* Other community or team contact
+### Source example ###
+
+The example can be found in the folder 'LLTests/'
