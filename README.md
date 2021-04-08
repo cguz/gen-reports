@@ -1,23 +1,10 @@
-# List and Label #
+# Reporting reports #
 
-Example in C# to generate a List and Label report.
+In this repository,  we have some code examples to generate reports using some tools in C#
 
-## Requirements ##
 
-* NuGet 4.3.0+
+### Source examples ###
 
-* Visual Studio 2017 version 15.3+
+The examples of the tools can be found in:
 
-* Visual Studio 2015 with NuGet VSIX v3.6.0
-
-* dotnet: dotnetcore.exe (.NET SDK 2.0.0+)
-
-## Configuration steps ##
-
-* Install List and Label from [here](https://www.combit.com/)
-* Get a licence (this is a requirement).
-* Install combit.ListLabel26 package from NuGet packages. They can also be found from [here](https://www.nuget.org/profiles/combit).
-
-### Source example ###
-
-The example can be found in the folder 'LLTests/'
+* List and Label : Folder 'src/LLTests/'
