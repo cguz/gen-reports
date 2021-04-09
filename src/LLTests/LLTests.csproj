@@ -7,7 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="x64\**" />
+    <EmbeddedResource Remove="x64\**" />
+    <None Remove="x64\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="combit.ListLabel26" Version="26.1.0" />
+    <PackageReference Include="combit.ListLabel26.Web" Version="26.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +24,27 @@
     <None Update="data-model\data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="layout\layout1.lsp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout1.lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout1.lsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="x64\combit.ListLabel25.Export.x64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="x64\System.Data.SQLite.x64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="x64\DocumentFormat.OpenXml.dll" />
   </ItemGroup>
 
 </Project>

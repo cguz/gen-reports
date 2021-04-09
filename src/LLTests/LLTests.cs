@@ -4,18 +4,28 @@ using combit.Reporting;
 using System.IO;
 using System.Collections.Generic;
 
-// install System.Drawing.Common from NuGet
 
-// Following the page 21 in https://www.microway.com.au/catalog/combit/Programmers-Manual.pdf
-
-// Following the next URL for the last version: https://docu.combit.net/progref/en/index.html#!Documents/integratelistlabel.htm
-
-// En el mismo dominio no se pueden tener dos versiones de List & Labal.
-// Se necesita una licencia. 
-
-// Para poder usar sus librerías se necesita tener instalado el programa.
 namespace LLTests
 {
+    /**
+     * Enumerate to identify the different examples. 
+     */
+    public enum Options
+    {
+        LayoutExample,
+        VariablesExample,
+        DictionaryExample,
+        ObjectExample,
+        ObjectExtendExample,
+        ObjectDataProviderExample,
+        FullDataProvidersExample,
+        DataProvidersExamples
+    }
+
+
+    /**
+     * Helper classes for some examples
+     */
     public interface IModelObject
     {
         public string ModelVariable1 { get; set; }
@@ -28,7 +38,6 @@ namespace LLTests
         public string ModelVariable2 { get; set; }
 
     }
-
 
     public interface IModelObjectExtend : IModelObject
     {
@@ -44,22 +53,181 @@ namespace LLTests
         public IModelObject ModelObjectVariable { get; set; }
     }
 
+    public class Car
+    {
+        public string Brand { get; set; }
+        public string Model { get; set; }
+    }
+
+    /**
+     * Class with the code of the different examples
+     */
     public class LLTests
     {
+        // to communicate with list and label
         private ListLabel LL = new();
+
+        // path to the datasource
         private string _appDataPath;
 
-        public LLTests()
+        /**
+         * Constructor of the class. 
+         * @param selected example
+         * */
+        public LLTests(Options selectedOption)
         {
-            ObjectDataProviderExample();
+            switch (selectedOption)
+            {
+                case Options.VariablesExample:
+                    VariablesExample();
+                    break;
+                case Options.DataProvidersExamples:
+                    DataProvidersExamples();
+                    break;
+                case Options.DictionaryExample:
+                    DictionaryExample();
+                    break;
+                case Options.FullDataProvidersExample:
+                    FullDataProvidersExample();
+                    break;
+                case Options.LayoutExample:
+                    LayoutExample();
+                    break;
+                case Options.ObjectDataProviderExample:
+                    ObjectDataProviderExample();
+                    break;
+                case Options.ObjectExample:
+                    ObjectExample();
+                    break;
+                case Options.ObjectExtendExample:
+                    ObjectExtendExample();
+                    break;
+            }
         }
 
-        class Car
+        /**
+         * Example to load a JSON or XML in LL
+         */
+        private void DataProvidersExamples()
         {
-            public string Brand { get; set; }
-            public string Model { get; set; }
+            _appDataPath = Path.GetFullPath("./data-model");
+
+            // Identify the data source
+            LL.DataSource = CreateDataSet("JSON");
+            // LL.DataMember = "Customers";
+
+            LL.Design();
+
+            LL.Dispose();
         }
 
+        /**
+         * Example to load son additional variables to LL
+         */
+        private void VariablesExample()
+        {
+            _appDataPath = Path.GetFullPath("./data-model");
+
+            // Identify the data source
+            LL.DataSource = CreateDataSet("JSON");
+
+            /* Define additional data fields */
+            // We add the folders with a point. For instance: AdditionalData.UserName
+            LL.Variables.Add("AdditionalData.UserName", "Usuario");
+            LL.Variables.Add("AdditionalData.ProjectName ", "Name of project");
+
+            // Note that the variables can be assigned in a simple List to the DataSource 
+
+            LL.Design();
+
+            LL.Dispose();
+        }
+
+        /**
+         * Example to load some variables in the dictionary
+         */
+        private void DictionaryExample()
+        {
+            _appDataPath = Path.GetFullPath("./data-model");
+
+            // Identify the data source
+            LL.DataSource = CreateDataSet("JSON");
+
+            /* using a dictionary */
+            // Same as before we add the folders with a point
+            IDictionary<string, string> modelDictionary = new Dictionary<string, string>
+            {
+                { "Model.variable1", "value1" },
+                { "Model.variable2", "value2" },
+            };
+            LL.Variables.AddFromDictionary((System.Collections.IDictionary)modelDictionary);
+
+            LL.Design();
+
+            LL.Dispose();
+
+        }
+
+        /**
+         * Example to load an object class 
+         */
+        private void ObjectExample()
+        {
+            _appDataPath = Path.GetFullPath("./data-model");
+
+            // Identify the data source
+            LL.DataSource = CreateDataSet("JSON");
+
+            /* using a model */
+            // it is not possible to add folders
+            IModelObject modelObject = new ModelObject()
+            {
+                ModelVariable1 = "ModelValue1",
+                ModelVariable2 = "ModelValue2"
+            };
+            LL.Variables.AddFromObject(modelObject);
+
+            LL.Design();
+
+            LL.Dispose();
+        }
+
+        /**
+         * Example to load an extended object
+         */
+        private void ObjectExtendExample()
+        {
+            _appDataPath = Path.GetFullPath("./data-model");
+
+            // Identify the data source
+            LL.DataSource = CreateDataSet("JSON");
+
+            /* using a model */
+            // it is not possible to add folders
+            IModelObject modelObject = new ModelObject()
+            {
+                ModelVariable1 = "ModelValue1",
+                ModelVariable2 = "ModelValue2"
+            };
+
+            // using a model extended
+            // We add the folders with a variable of type of an object
+            IModelObjectExtend modelObjectExtended = new ModelObjectExtend()
+            {
+                ModelObjectVariable = modelObject,
+                ModelVariable1 = "ModelExtendedValue1",
+                ModelVariable2 = "ModelExtendedValue2"
+            };
+            LL.Variables.AddFromObject(modelObjectExtended);
+
+            LL.Design();
+
+            LL.Dispose();
+        }
+
+        /**
+         * Example to use an ObjectDataProvider as a DataSource
+         */
         private void ObjectDataProviderExample()
         {
             List<Car> cars = new List<Car>();
@@ -72,7 +240,10 @@ namespace LLTests
 
         }
 
-        private void Function1()
+        /**
+         * Example loading different data
+         */
+        private void FullDataProvidersExample()
         {
             _appDataPath = Path.GetFullPath("./data-model");
 
@@ -123,8 +294,6 @@ namespace LLTests
             // Define project type
             // LL.AutoProjectType = LlProject.Label;
 
-            // LL.ExportOptions.Add(LlExportOption.ExportTarget, "PDF");
-
             // LL.Print();
 
             LL.Design();
@@ -132,6 +301,36 @@ namespace LLTests
             LL.Dispose();
         }
 
+        /**
+         * Example to load a predefined layout
+         * */
+        private void LayoutExample()
+        {
+            _appDataPath = Path.GetFullPath("./data-model");
+
+            string DataLayoutPath = Path.GetFullPath("./layout");
+
+            // Identify the data source
+            LL.DataSource = CreateDataSet("JSON");
+
+            /* using a dictionary */
+            // Same as before we add the folders with a point
+            IDictionary<string, string> modelDictionary = new Dictionary<string, string>
+            {
+                { "Model.variable1", "value1" },
+                { "Model.variable2", "value2" },
+            };
+            LL.Variables.AddFromDictionary((System.Collections.IDictionary)modelDictionary);
+
+            // Sets the file name of the List & Label project file for the methods Print and Design in databound mode.
+            LL.AutoProjectFile = Path.Combine(DataLayoutPath, "layout1.lst");
+
+            LL.Design();
+        }
+
+        /**
+         * It create a dataset in XML, JSON, CSV
+         */
         private object CreateDataSet(string dataSourceId)
         {
 
@@ -165,7 +364,7 @@ namespace LLTests
         [STAThread]
         public static int Main()
         {
-            LLTests ll = new();
+            LLTests ll = new(Options.ObjectExtendExample);
 
             return 0;
         }
