@@ -4,7 +4,14 @@ using combit.Reporting;
 using System.IO;
 using System.Collections.Generic;
 
-
+/**
+* @file LLTests.cs
+*
+* @brief This file contains some examples to execute LL from source code. 
+*
+* @author Cesar Augusto Guzman Alvarez
+* Contact: developer@cguz.org*
+*/
 namespace LLTests
 {
     /**
