@@ -6,6 +6,14 @@ using System.Collections.Generic;
 using Preference.IntelliText;
 using Preference.IntelliText.Template;
 
+/**
+* @file LLTests.cs
+*
+* @brief This file contains some examples to execute LL from source code. 
+*
+* @author Cesar Augusto Guzman Alvarez
+* Contact: developer@cguz.org*
+*/
 namespace LLTests
 {
     /**
@@ -20,10 +28,7 @@ namespace LLTests
         ObjectExtendExample,
         ObjectDataProviderExample,
         FullDataProvidersExample,
-        DataProvidersExamples,
-        IntelliTextExample,
-        IntelliTextListModelsExample,
-        IntelliTextAddTwoModelsExample
+        DataProvidersExamples
     }
 
 
