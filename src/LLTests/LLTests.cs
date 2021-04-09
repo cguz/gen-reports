@@ -28,7 +28,10 @@ namespace LLTests
         ObjectExtendExample,
         ObjectDataProviderExample,
         FullDataProvidersExample,
-        DataProvidersExamples
+        DataProvidersExamples,
+        IntelliTextAddTwoModelsExample,
+        IntelliTextExample,
+        IntelliTextListModelsExample
     }
 
 
