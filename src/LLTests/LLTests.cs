@@ -3,7 +3,8 @@ using combit.Reporting.DataProviders;
 using combit.Reporting;
 using System.IO;
 using System.Collections.Generic;
-
+using Preference.IntelliText;
+using Preference.IntelliText.Template;
 
 namespace LLTests
 {
@@ -19,7 +20,10 @@ namespace LLTests
         ObjectExtendExample,
         ObjectDataProviderExample,
         FullDataProvidersExample,
-        DataProvidersExamples
+        DataProvidersExamples,
+        IntelliTextExample,
+        IntelliTextListModelsExample,
+        IntelliTextAddTwoModelsExample
     }
 
 
@@ -57,6 +61,12 @@ namespace LLTests
     {
         public string Brand { get; set; }
         public string Model { get; set; }
+    }
+
+    public class ModelClass
+    {
+        public IDescriptionModel model1 { get; internal set; }
+        public IDescriptionModel model2 { get; internal set; }
     }
 
     /**
@@ -102,7 +112,124 @@ namespace LLTests
                 case Options.ObjectExtendExample:
                     ObjectExtendExample();
                     break;
+                case Options.IntelliTextExample:
+                    IntelliTextExample();
+                    break;
+                case Options.IntelliTextListModelsExample:
+                    IntelliTextListModelsExample();
+                    break;
+                case Options.IntelliTextAddTwoModelsExample:
+                    IntelliTextAddTwoModelsExample();
+                    break;
             }
+        }
+
+        private PreferenceIntelliTextExecutor GenerateIntelliText()
+        {
+            string OutputFile = "WB-ES-SeveralDescriptionsPriceGrouped-HTML-UseCase5.txt";
+            string template = "WB-SeveralDescriptionPriceGrouped-UseCase5";
+            string automaticTextGeneratorProvider = "FILE";
+            string audience = "Consumer";
+            string dataProvider = "FILE";
+            string pathDataProvider = "./data-model/xml-descriptive/WB-SeveralDescriptionsPriceGrouped-UseCase4.xml";
+            string render = "LL";
+            string language = "es-ES";
+
+            TextSettings settings = new();
+
+            // set the template id, audience and language
+            settings.Template = template;
+
+            settings.TextGeneratorProvider = automaticTextGeneratorProvider;
+
+            settings.PathTextGeneratorProvider = Path.GetFullPath("./text-generator-files/");
+
+            settings.Audience = audience;
+
+            settings.Culture = new(language, false);
+
+            settings.PathTemplates = Path.GetFullPath("./catalogs/company/");
+
+            settings.DataProvider = dataProvider;
+
+            settings.PathDataProvider = Path.GetFullPath(pathDataProvider);
+
+            settings.Render = render;
+
+            settings.SaveTo = OutputFile;
+
+            // IntelliText creator receives the catalog constructor, the render to use, the data provider to use
+            PreferenceIntelliText intelliText = new(settings);
+
+            // build the required information: template, render, and structure
+            intelliText.Build();
+
+            // get the executor
+            return intelliText.GetExecutor();
+        }
+
+        private void IntelliTextExample()
+        {
+            string pathDataLayout = Path.GetFullPath("./layout/");
+
+            PreferenceIntelliTextExecutor executor = GenerateIntelliText();
+
+            // generate the model description
+            IDescriptionModel modelDescription = executor.GenerateDescriptions();
+
+            LL.DataSource = new ObjectDataProvider(modelDescription);
+
+            // Sets the file name of the List & Label project file for the methods Print and Design in databound mode.
+            LL.AutoProjectFile = Path.Combine(pathDataLayout, "layout-example.lst");
+
+            LL.Design();
+
+            LL.Dispose();
+        }
+
+        private void IntelliTextListModelsExample()
+        {
+            string pathDataLayout = Path.GetFullPath("./layout/");
+
+            PreferenceIntelliTextExecutor executor = GenerateIntelliText();
+
+            // generate the model description
+            IDescriptionModel modelDescription = executor.GenerateDescriptions();
+
+            List<IDescriptionModel> listModels = new();
+            listModels.Add(modelDescription);
+            listModels.Add(modelDescription);
+
+            LL.DataSource = new ObjectDataProvider(listModels);
+
+            // Sets the file name of the List & Label project file for the methods Print and Design in databound mode.
+            LL.AutoProjectFile = Path.Combine(pathDataLayout, "layout-listmodels-example.lst");
+
+            LL.Design();
+
+            LL.Dispose();
+        }
+        private void IntelliTextAddTwoModelsExample()
+        {
+            string pathDataLayout = Path.GetFullPath("./layout/");
+
+            PreferenceIntelliTextExecutor executor = GenerateIntelliText();
+
+            // generate the model description
+            IDescriptionModel modelDescription = executor.GenerateDescriptions();
+
+            ModelClass listModels = new();
+            listModels.model1 = modelDescription;
+            listModels.model2 = modelDescription;
+
+            LL.DataSource = new ObjectDataProvider(listModels);
+
+            // Sets the file name of the List & Label project file for the methods Print and Design in databound mode.
+            LL.AutoProjectFile = Path.Combine(pathDataLayout, "layout-listmodels-example.lst");
+
+            LL.Design();
+
+            LL.Dispose();
         }
 
         /**
@@ -364,7 +491,7 @@ namespace LLTests
         [STAThread]
         public static int Main()
         {
-            LLTests ll = new(Options.ObjectExtendExample);
+            LLTests ll = new(Options.IntelliTextAddTwoModelsExample);
 
             return 0;
         }

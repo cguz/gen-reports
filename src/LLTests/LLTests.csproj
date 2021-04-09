@@ -18,10 +18,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Catalogs\ATG-Regions-GroupVersion.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Catalogs\Company\ATG-Templates-GroupVersion.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="data-model\customers.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="data-model\data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="data-model\xml-descriptive\WB-SeveralDescriptionsPriceGrouped-UseCase4.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-example.lsp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-example.lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-example.lsv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="layout\layout1.lsp">
@@ -31,6 +49,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="layout\layout1.lsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="text-generator-files\de-DE.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="text-generator-files\en-EN.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="text-generator-files\es-ES.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -45,6 +72,12 @@
 
   <ItemGroup>
     <None Remove="x64\DocumentFormat.OpenXml.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Preference.IntelliText">
+      <HintPath>C:\PrefSuite\prefsuite_issue1\prefsuite\IntelliText\src\Preference.IntelliText\obj\Debug\net5.0\Preference.IntelliText.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
