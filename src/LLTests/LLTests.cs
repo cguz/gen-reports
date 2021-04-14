@@ -5,6 +5,7 @@ using System.IO;
 using System.Collections.Generic;
 using Preference.IntelliText;
 using Preference.IntelliText.Template;
+using System.Text;
 
 /**
 * @file LLTests.cs
@@ -31,7 +32,11 @@ namespace LLTests
         DataProvidersExamples,
         IntelliTextAddTwoModelsExample,
         IntelliTextExample,
-        IntelliTextListModelsExample
+        IntelliTextListModelsExample,
+        IntelliTextSeparateRegionsAndRegionsPricesExample,
+        IntelliTextSerializeObjectToJsonExample,
+        IntelliTextUnifiedRegionsAndRegionsPricesExample,
+        IntelliTextFinalExample
     }
 
 
@@ -94,6 +99,8 @@ namespace LLTests
          * */
         public LLTests(Options selectedOption)
         {
+            _appDataPath = Path.GetFullPath("./data-model");
+
             switch (selectedOption)
             {
                 case Options.VariablesExample:
@@ -129,6 +136,18 @@ namespace LLTests
                 case Options.IntelliTextAddTwoModelsExample:
                     IntelliTextAddTwoModelsExample();
                     break;
+                case Options.IntelliTextSerializeObjectToJsonExample:
+                    IntelliTextSerializeObjectToJsonExample("data-from-it-model-description.json");
+                    break;
+                case Options.IntelliTextSeparateRegionsAndRegionsPricesExample:
+                    FromJSONPathExample("data-separate-model-description.json", "layout-separate-model-description-example.lst");
+                    break;
+                case Options.IntelliTextUnifiedRegionsAndRegionsPricesExample:
+                    FromJSONPathExample("data-unified-model-description.json", "layout-unified-model-description-example.lst");
+                    break;
+                case Options.IntelliTextFinalExample: 
+                    FromJSONPathExample("data-separate-model-description.json", "layout-Final-example.lst");
+                    break;
             }
         }
 
@@ -141,7 +160,7 @@ namespace LLTests
             string dataProvider = "FILE";
             string pathDataProvider = "./data-model/xml-descriptive/WB-SeveralDescriptionsPriceGrouped-UseCase4.xml";
             string render = "LL";
-            string language = "es-ES";
+            string language = "en-EN";
 
             TextSettings settings = new();
 
@@ -217,6 +236,7 @@ namespace LLTests
 
             LL.Dispose();
         }
+
         private void IntelliTextAddTwoModelsExample()
         {
             string pathDataLayout = Path.GetFullPath("./layout/");
@@ -233,11 +253,43 @@ namespace LLTests
             LL.DataSource = new ObjectDataProvider(listModels);
 
             // Sets the file name of the List & Label project file for the methods Print and Design in databound mode.
-            LL.AutoProjectFile = Path.Combine(pathDataLayout, "layout-listmodels-example.lst");
+            LL.AutoProjectFile = Path.Combine(pathDataLayout, "layout-twomodels-example.lst");
 
             LL.Design();
 
             LL.Dispose();
+        }
+
+        private void FromJSONPathExample(string fileJson, string layout)
+        {
+            string pathDataLayout = Path.GetFullPath("./layout/");
+
+            // add the data source
+            LL.DataSource = new JsonDataProvider(File.ReadAllText(Path.Combine(_appDataPath, fileJson)));
+
+            // Sets the file name of the List & Label project file for the methods Print and Design in databound mode.
+            LL.AutoProjectFile = Path.Combine(pathDataLayout, layout);
+
+            LL.Design();
+
+            LL.Dispose();
+        }
+
+        /*
+         * We use the using System.Web.Script.Serialization;
+         */
+        private void IntelliTextSerializeObjectToJsonExample(string fileJson)
+        {
+            PreferenceIntelliTextExecutor executor = GenerateIntelliText();
+
+            // generate the model description
+            IDescriptionModel modelDescription = executor.GenerateDescriptions();
+
+            // serialize the model
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(modelDescription);
+
+            // write to a file
+            File.WriteAllText(Path.Combine(_appDataPath, fileJson), json, Encoding.Default);
         }
 
         /**
@@ -245,8 +297,6 @@ namespace LLTests
          */
         private void DataProvidersExamples()
         {
-            _appDataPath = Path.GetFullPath("./data-model");
-
             // Identify the data source
             LL.DataSource = CreateDataSet("JSON");
             // LL.DataMember = "Customers";
@@ -261,7 +311,6 @@ namespace LLTests
          */
         private void VariablesExample()
         {
-            _appDataPath = Path.GetFullPath("./data-model");
 
             // Identify the data source
             LL.DataSource = CreateDataSet("JSON");
@@ -283,7 +332,6 @@ namespace LLTests
          */
         private void DictionaryExample()
         {
-            _appDataPath = Path.GetFullPath("./data-model");
 
             // Identify the data source
             LL.DataSource = CreateDataSet("JSON");
@@ -308,7 +356,6 @@ namespace LLTests
          */
         private void ObjectExample()
         {
-            _appDataPath = Path.GetFullPath("./data-model");
 
             // Identify the data source
             LL.DataSource = CreateDataSet("JSON");
@@ -332,7 +379,6 @@ namespace LLTests
          */
         private void ObjectExtendExample()
         {
-            _appDataPath = Path.GetFullPath("./data-model");
 
             // Identify the data source
             LL.DataSource = CreateDataSet("JSON");
@@ -499,7 +545,7 @@ namespace LLTests
         [STAThread]
         public static int Main()
         {
-            LLTests ll = new(Options.IntelliTextAddTwoModelsExample);
+            LLTests ll = new(Options.IntelliTextFinalExample);
 
             return 0;
         }
