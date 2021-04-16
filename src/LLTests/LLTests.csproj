@@ -96,6 +96,18 @@
     <None Update="layout\layout-Final-example.~lst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="layout\layout-Final-ModelDescription-example.lsp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-Final-ModelDescription-example.lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-Final-ModelDescription-example.lsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-Final-ModelDescription-example.~lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="layout\layout-listmodels-example.lsp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -106,6 +118,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="layout\layout-listmodels-example.~lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-samerow-example.lsp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-samerow-example.lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-samerow-example.lsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-samerow-example.~lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-unified-model-description-example.lsp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="layout\layout-unified-model-description-example.lst">
@@ -136,6 +163,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="layout\layout-twomodels-example.~lst">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-unified-model-description-example.lsv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="layout\layout-unified-model-description-example.~lst">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="layout\layout1.lsp">

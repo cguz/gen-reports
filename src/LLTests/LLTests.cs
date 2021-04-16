@@ -145,7 +145,10 @@ namespace LLTests
                 case Options.IntelliTextUnifiedRegionsAndRegionsPricesExample:
                     FromJSONPathExample("data-unified-model-description.json", "layout-unified-model-description-example.lst");
                     break;
-                case Options.IntelliTextFinalExample: 
+                case Options.IntelliTextFinalExample:
+                    // FromJSONPathExample("data-separate-model-description.json", "layout-Final-Body-example.lst");
+                    // FromJSONPathExample("data-separate-model-description.json", "layout-Final-V1-example.lst");
+                    // FromJSONPathExample("data-separate-model-description.json", "layout-Final-V2-example.lst");
                     FromJSONPathExample("data-separate-model-description.json", "layout-Final-example.lst");
                     break;
             }

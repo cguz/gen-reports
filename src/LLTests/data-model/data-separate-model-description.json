@@ -1,7 +1,11 @@
 {
     "Models" : [{
         "Id" : 1,
-        "Title": "Example of use case 5 : WB-SeveralDescriptionPriceGrouped-UseCase5 - HTML",
+        "Number" : "1 St.",
+        "Description": "1575 x 1395 mm",
+        "AmountE" : 500.60,
+        "Total" : 500.60,
+        "BasicPrice": 330.57,
         "Models.Regions": [
             {
                 "Description": null,
@@ -74,7 +78,7 @@
         "Models.RegionsPrices": [
             {
                 "Title": "Preisliste:",
-                "BasicPrice": 170.08424,
+                "BasicPrice": 330.57,
                 "Description": null,
                 "Models.RegionsPrices.Fields": [
                     {
@@ -194,13 +198,15 @@
                     }
                 ]
             }
-        ],
-        "Texts": null,
-        "Description": null
+        ]
     },
     {
         "Id" : 2,
-        "Title": "Example of use case 5 : WB-SeveralDescriptionPriceGrouped-UseCase5 - HTML",
+        "Number" : "1 St.",
+        "Description": "2575 x 1395 mm",
+        "AmountE" : 796.71,
+        "Total" : 796.71,
+        "BasicPrice": 519.25,
         "Models.Regions": [
             {
                 "Description": null,
@@ -273,7 +279,7 @@
         "Models.RegionsPrices": [
             {
                 "Title": "Preisliste:",
-                "BasicPrice": 170.08424,
+                "BasicPrice": 519.25,
                 "Description": null,
                 "Models.RegionsPrices.Fields": [
                     {
@@ -328,8 +334,6 @@
                     }
                 ]
             }
-        ],
-        "Texts": null,
-        "Description": null
+        ]
     }]
 }
