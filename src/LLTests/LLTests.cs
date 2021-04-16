@@ -1,22 +1,23 @@
-﻿using System;
-using combit.Reporting.DataProviders;
-using combit.Reporting;
-using System.IO;
-using System.Collections.Generic;
-using Preference.IntelliText;
-using Preference.IntelliText.Template;
-using System.Text;
-
-/**
+﻿/**
 * @file LLTests.cs
 *
 * @brief This file contains some examples to execute LL from source code. 
 *
 * @author Cesar Augusto Guzman Alvarez
-* Contact: developer@cguz.org*
+* Contact: developer@cguz.org
 */
 namespace LLTests
 {
+    using System;
+    using combit.Reporting.DataProviders;
+    using combit.Reporting;
+    using System.IO;
+    using System.Collections.Generic;
+    using Preference.IntelliText;
+    using Preference.IntelliText.Template;
+    using System.Text;
+
+
     /**
      * Enumerate to identify the different examples. 
      */
@@ -30,13 +31,13 @@ namespace LLTests
         ObjectDataProviderExample,
         FullDataProvidersExample,
         DataProvidersExamples,
-        IntelliTextAddTwoModelsExample,
-        IntelliTextExample,
-        IntelliTextListModelsExample,
-        IntelliTextSeparateRegionsAndRegionsPricesExample,
-        IntelliTextSerializeObjectToJsonExample,
-        IntelliTextUnifiedRegionsAndRegionsPricesExample,
-        IntelliTextFinalExample
+        LayoutAddTwoModelsExample,
+        LayoutTextExample,
+        LayoutListModelsExample,
+        LayoutSeparateRegionsAndRegionsPricesExample,
+        LayoutSerializeObjectToJsonExample,
+        LayoutUnifiedRegionsAndRegionsPricesExample,
+        LayoutFinalExample
     }
 
 
@@ -127,25 +128,25 @@ namespace LLTests
                 case Options.ObjectExtendExample:
                     ObjectExtendExample();
                     break;
-                case Options.IntelliTextExample:
-                    IntelliTextExample();
+                case Options.LayoutTextExample:
+                    LayoutTextExample();
                     break;
-                case Options.IntelliTextListModelsExample:
-                    IntelliTextListModelsExample();
+                case Options.LayoutListModelsExample:
+                    LayoutListModelsExample();
                     break;
-                case Options.IntelliTextAddTwoModelsExample:
-                    IntelliTextAddTwoModelsExample();
+                case Options.LayoutAddTwoModelsExample:
+                    LayoutAddTwoModelsExample();
                     break;
-                case Options.IntelliTextSerializeObjectToJsonExample:
-                    IntelliTextSerializeObjectToJsonExample("data-from-it-model-description.json");
+                case Options.LayoutSerializeObjectToJsonExample:
+                    LayoutSerializeObjectToJsonExample("data-from-it-model-description.json");
                     break;
-                case Options.IntelliTextSeparateRegionsAndRegionsPricesExample:
+                case Options.LayoutSeparateRegionsAndRegionsPricesExample:
                     FromJSONPathExample("data-separate-model-description.json", "layout-separate-model-description-example.lst");
                     break;
-                case Options.IntelliTextUnifiedRegionsAndRegionsPricesExample:
+                case Options.LayoutUnifiedRegionsAndRegionsPricesExample:
                     FromJSONPathExample("data-unified-model-description.json", "layout-unified-model-description-example.lst");
                     break;
-                case Options.IntelliTextFinalExample:
+                case Options.LayoutFinalExample:
                     // FromJSONPathExample("data-separate-model-description.json", "layout-Final-Body-example.lst");
                     // FromJSONPathExample("data-separate-model-description.json", "layout-Final-V1-example.lst");
                     // FromJSONPathExample("data-separate-model-description.json", "layout-Final-V2-example.lst");
@@ -198,7 +199,7 @@ namespace LLTests
             return intelliText.GetExecutor();
         }
 
-        private void IntelliTextExample()
+        private void LayoutTextExample()
         {
             string pathDataLayout = Path.GetFullPath("./layout/");
 
@@ -217,7 +218,7 @@ namespace LLTests
             LL.Dispose();
         }
 
-        private void IntelliTextListModelsExample()
+        private void LayoutListModelsExample()
         {
             string pathDataLayout = Path.GetFullPath("./layout/");
 
@@ -240,7 +241,7 @@ namespace LLTests
             LL.Dispose();
         }
 
-        private void IntelliTextAddTwoModelsExample()
+        private void LayoutAddTwoModelsExample()
         {
             string pathDataLayout = Path.GetFullPath("./layout/");
 
@@ -281,7 +282,7 @@ namespace LLTests
         /*
          * We use the using System.Web.Script.Serialization;
          */
-        private void IntelliTextSerializeObjectToJsonExample(string fileJson)
+        private void LayoutSerializeObjectToJsonExample(string fileJson)
         {
             PreferenceIntelliTextExecutor executor = GenerateIntelliText();
 
@@ -548,7 +549,7 @@ namespace LLTests
         [STAThread]
         public static int Main()
         {
-            LLTests ll = new(Options.IntelliTextFinalExample);
+            LLTests ll = new(Options.LayoutFinalExample);
 
             return 0;
         }

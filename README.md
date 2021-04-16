@@ -7,4 +7,4 @@ In this repository,  we have some code examples to generate reports using some t
 
 The examples of the tools can be found in:
 
-* List and Label : Folder 'src/LLTests/'
+* List and Label : Folder 'src/'
