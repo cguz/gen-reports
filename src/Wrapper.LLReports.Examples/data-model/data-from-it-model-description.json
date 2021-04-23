@@ -1,0 +1,139 @@
+{
+    "Models": [
+        {
+            "Id": 1,
+            "Number": "1 St.",
+            "Description": "1575 x 1395 mm",
+            "AmountE": 500.6,
+            "Total": 500.6,
+            "BasicPrice": 330.57,
+            
+            "Models.Regions": [
+                {
+                    "Title": "Region Color",
+                    "Models.Regions.Fields": [
+                        {
+                            "Name": "Color",
+                            "Value": "Blanco",
+                            "VerticalOrder": 1
+                        }
+                    ]
+                },
+                {
+                    "Title": "Description",
+                    "Models.Regions.Fields": [
+                        {
+                            "Name": "Profil system:",
+                            "Value": "Aluplast ID8000",
+                            "VerticalOrder": 1
+                        }
+                    ]
+                }
+            ],
+            "Models.RegionsPrices": [
+                {
+                    "Title": "Preisliste:",
+                    "Models.RegionsPrices.Fields": [
+                        {
+                            "Name": "",
+                            "Value": "DK + DK",
+                            "VerticalOrder": 1
+                        },
+                        {
+                            "Name": "",
+                            "Value": "ROTO Abdeckkappen Weiss",
+                            "VerticalOrder": 1
+                        }
+                    ],
+                    "Models.RegionsPrices.FieldsPrices": [
+                        {
+                            "MeasureValue": 1.446,
+                            "MeasureType": "m2",
+                            "Text": "4E/14/4/14/Err2 VSG 44mm Ug0.6 Rw 39 g50 Lt69 (H0971)",
+                            "Price": 68.9,
+                            "Name": "",
+                            "Value": "",
+                            "VerticalOrder": 2
+                        },
+                        {
+                            "MeasureValue": 1.446,
+                            "MeasureType": "m2",
+                            "Text": "Warme Kante fuer 3-fach Glas",
+                            "Price": 9.54,
+                            "Name": "",
+                            "Value": "",
+                            "VerticalOrder": 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Id": 2,
+            "Number": "1 St.",
+            "Description": "2575 x 1395 mm",
+            "AmountE": 796.71,
+            "Total": 796.71,
+            "BasicPrice": 519.25,
+            "Models.Regions": [
+                {
+                    "Title": "Region Color",
+                    "Models.Regions.Fields": [
+                        {
+                            "Name": "Color",
+                            "Value": "Blanco",
+                            "VerticalOrder": 1
+                        }
+                    ]
+                },
+                {
+                    "Title": "Description",
+                    "Models.Regions.Fields": [
+                        {
+                            "Name": "Profil system:",
+                            "Value": "Aluplast ID8000",
+                            "VerticalOrder": 1
+                        }
+                    ]
+                }
+            ],
+            "Models.RegionsPrices": [
+                {
+                    "Title": "Preisliste:",
+                    "Models.RegionsPrices.Fields": [
+                        {
+                            "Name": "",
+                            "Value": "DK + DK",
+                            "VerticalOrder": 1
+                        },
+                        {
+                            "Name": "",
+                            "Value": "ROTO Abdeckkappen Weiss",
+                            "VerticalOrder": 1
+                        }
+                    ],
+                    "Models.RegionsPrices.FieldsPrices": [
+                        {
+                            "MeasureValue": 1.446,
+                            "MeasureType": "m2",
+                            "Text": "4E/14/4/14/Err2 VSG 44mm Ug0.6 Rw 39 g50 Lt69 (H0971)",
+                            "Price": 68.9,
+                            "Name": "",
+                            "Value": "",
+                            "VerticalOrder": 2
+                        },
+                        {
+                            "MeasureValue": 1.446,
+                            "MeasureType": "m2",
+                            "Text": "Warme Kante fuer 3-fach Glas",
+                            "Price": 9.54,
+                            "Name": "",
+                            "Value": "",
+                            "VerticalOrder": 2
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

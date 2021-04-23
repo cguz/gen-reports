@@ -1,10 +1,8 @@
-# Reporting reports #
+# Generating Reports #
 
-In this repository,  we have some code examples to generate reports using some tools in C#
+In this repository,  we have some code examples to generate reports using some tools
 
 
 ### Source examples ###
 
-The examples of the tools can be found in:
-
-* List and Label : Folder 'src/'
+The code examples can be found in the folder 'src/'
